@@ -1,0 +1,21 @@
+{
+  "name": "task.js",
+  "version": "1.0.0",
+  "description": "Library for managing of Web Worker tasks",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:webschik/task.js.git"
+  },
+  "keywords": [
+    "WebWorker",
+    "browser",
+    "queue"
+  ],
+  "author": "webschik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webschik/task.js/issues"
+  },
+  "homepage": "https://github.com/webschik/task.js"
+}
