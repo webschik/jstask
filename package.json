@@ -1,6 +1,6 @@
 {
-  "name": "task.js",
-  "version": "1.0.0",
+  "name": "jstask",
+  "version": "1.0.1",
   "description": "Library for managing of Web Worker tasks",
   "main": "src/index.js",
   "repository": {
