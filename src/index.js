@@ -1,7 +1,7 @@
-const maxWorkersCount = typeof navigator !== 'undefined' && navigator.hardwareConcurrency || 4;
-const invalidWorker = `Can't run the worker`;
-const queue = [];
-let createdWorkersCount = 0;
+var maxWorkersCount = typeof navigator !== 'undefined' && navigator.hardwareConcurrency || 4;
+var invalidWorker = `Can't run the worker`;
+var queue = [];
+var createdWorkersCount = 0;
 
 function done (worker) {
     worker.terminate();
@@ -11,17 +11,17 @@ function done (worker) {
 
 function processQueue () {
     if (createdWorkersCount < maxWorkersCount) {
-        let taskOptions = queue.shift();
+        var taskOptions = queue.shift();
 
         if (!taskOptions) {
             return;
         }
 
         createdWorkersCount++;
-        let worker = new Worker(taskOptions.url);
+        var worker = new Worker(taskOptions.url);
 
         worker.onmessage = function (e) {
-            let data = e.data || {};
+            var data = e.data || {};
 
             if (data.error) {
                 this.onerror(data.error);
@@ -50,8 +50,15 @@ function processQueue () {
     }
 }
 
-class Task {
-    constructor (url, data, resolve, reject) {
+/**
+ * @constructor
+ * @param url {String}
+ * @param data {Object}
+ * @param resolve {Function}
+ * @param reject {Function}
+ */
+module.exports = {
+    run: function (url, data, resolve, reject) {
         queue.push({
             token: Date.now(),
             url,
@@ -61,6 +68,4 @@ class Task {
         });
         processQueue();
     }
-}
-
-module.exports = Task;
+};
