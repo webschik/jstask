@@ -21,16 +21,8 @@ function processQueue () {
         var worker = new Worker(taskOptions.url);
 
         worker.onmessage = function (e) {
-            var data = e.data || {};
-
-            if (data.error) {
-                this.onerror(data.error);
-                taskOptions = null;
-                return;
-            }
-
             if (typeof taskOptions.resolve === 'function') {
-                taskOptions.resolve(data.result);
+                taskOptions.resolve(e.data || {});
             }
 
             taskOptions = null;
