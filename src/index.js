@@ -1,5 +1,5 @@
 var maxWorkersCount = typeof navigator !== 'undefined' && navigator.hardwareConcurrency || 4;
-var invalidWorker = `Can't run the worker`;
+var invalidWorker = "Can't run the worker";
 var queue = [];
 var createdWorkersCount = 0;
 
@@ -53,10 +53,10 @@ module.exports = {
     run: function (url, data, resolve, reject) {
         queue.push({
             token: Date.now(),
-            url,
-            data,
-            resolve,
-            reject
+            url: url,
+            data: data,
+            resolve: resolve,
+            reject: reject
         });
         processQueue();
     }
